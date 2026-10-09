@@ -1,0 +1,33 @@
+@import url("https://fonts.googleapis.com/css2?family=Anton&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap");
+@import "tailwindcss";
+
+@theme {
+  --color-brand: #f0432d;
+  --color-brand-dark: #d02f1b;
+  --color-sun: #ffb020;
+  --color-ink: #111114;
+  --color-card: #1a1816;
+  --color-cream: #fff4e0;
+  --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: "Anton", "Impact", sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+body { background: #f6f6f8; color: var(--color-ink); font-family: var(--font-sans); -webkit-font-smoothing: antialiased; }
+.font-display { font-family: var(--font-display); letter-spacing: 0.01em; }
+::-webkit-scrollbar { height: 6px; width: 8px; }
+::-webkit-scrollbar-thumb { background: #d4d4dc; border-radius: 8px; }
+.no-scrollbar::-webkit-scrollbar { display: none; }
+
+.glass { background: rgba(255,255,255,.72); backdrop-filter: blur(18px) saturate(1.4); -webkit-backdrop-filter: blur(18px) saturate(1.4); border: 1px solid rgba(255,255,255,.6); }
+.grad { background: linear-gradient(135deg, #ff6a3d 0%, #f0432d 50%, #e0245e 100%); }
+.soft { box-shadow: 0 1px 2px rgba(17,17,20,.04), 0 8px 24px -8px rgba(17,17,20,.10); }
+.soft-lg { box-shadow: 0 2px 4px rgba(17,17,20,.04), 0 24px 48px -16px rgba(17,17,20,.22); }
+
+@keyframes floaty { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+.floaty { animation: floaty 5s ease-in-out infinite; }
+@keyframes blob { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(20px,-20px) scale(1.1); } }
+.blob { animation: blob 9s ease-in-out infinite; }
+@keyframes shimmer { 100% { transform: translateX(100%); } }
+.shine { position: relative; overflow: hidden; }
+.shine::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, transparent, rgba(255,255,255,.4), transparent); transform: translateX(-100%); animation: shimmer 3s infinite; }

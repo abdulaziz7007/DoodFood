@@ -1,0 +1,32 @@
+export type Category = { id: string; name: string; emoji: string; order: number };
+export type Product = {
+  id: string;
+  categoryId: string;
+  name: string;
+  description: string;
+  price: number;
+  oldPrice?: number;
+  image?: string;
+  emoji: string;
+  active: boolean;
+};
+export type Banner = { id: string; title: string; subtitle: string; from: string; to: string; emoji: string; active: boolean };
+export type OrderItem = { productId: string; name: string; price: number; qty: number };
+export type OrderStatus = "new" | "cooking" | "delivering" | "done" | "cancelled";
+export type Order = {
+  id: string;
+  number: number;
+  createdAt: string;
+  name: string;
+  phone: string;
+  address: string;
+  comment: string;
+  items: OrderItem[];
+  total: number;
+  promo?: string;
+  userId?: string;
+  discount?: number;
+  status: OrderStatus;
+};
+export type User = { id: string; name: string; phone: string; address: string; pass: string; createdAt: string };
+export type DB = { categories: Category[]; products: Product[]; banners: Banner[]; orders: Order[]; users?: User[]; seq: number };
