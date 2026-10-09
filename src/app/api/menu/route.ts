@@ -3,7 +3,7 @@ import { readDB } from "@/lib/db";
 
 export const dynamic = "force-dynamic";
 export async function GET() {
-  const { categories, products, banners } = readDB();
+  const { categories, products, banners } = (await readDB());
   return NextResponse.json({
     categories: [...categories].sort((a, b) => a.order - b.order),
     products: products.filter((p) => p.active),

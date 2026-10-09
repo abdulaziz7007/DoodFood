@@ -29,7 +29,7 @@ export async function getUser(): Promise<User | null> {
   if (!t) return null;
   const [id, sig] = t.split(".");
   if (!id || sig !== mac(id)) return null;
-  return (readDB().users ?? []).find((u) => u.id === id) ?? null;
+  return ((await readDB()).users ?? []).find((u) => u.id === id) ?? null;
 }
 
 export const publicUser = (u: User) => ({ id: u.id, name: u.name, phone: u.phone, address: u.address, createdAt: u.createdAt });

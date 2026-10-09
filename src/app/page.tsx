@@ -3,8 +3,8 @@ import { readDB } from "@/lib/db";
 
 export const dynamic = "force-dynamic";
 
-export default function Home() {
-  const { categories, products, banners } = readDB();
+export default async function Home() {
+  const { categories, products, banners } = (await readDB());
   return (
     <Storefront
       categories={[...categories].sort((a, b) => a.order - b.order)}

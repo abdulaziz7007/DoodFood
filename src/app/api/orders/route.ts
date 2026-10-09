@@ -9,12 +9,12 @@ export const dynamic = "force-dynamic";
 
 export async function GET() {
   if (!(await isAdmin())) return NextResponse.json({ error: "unauthorized" }, { status: 401 });
-  return NextResponse.json([...readDB().orders].reverse());
+  return NextResponse.json([...(await readDB()).orders].reverse());
 }
 
 export async function POST(req: Request) {
   const body = await req.json();
-  const db = readDB();
+  const db = (await readDB());
   const items = (body.items as { productId: string; qty: number }[] | undefined)?.flatMap((i) => {
     const p = db.products.find((x) => x.id === i.productId && x.active);
     return p && i.qty > 0 ? [{ productId: p.id, name: p.name, price: p.price, qty: Math.min(99, Math.floor(i.qty)) }] : [];
@@ -41,6 +41,6 @@ export async function POST(req: Request) {
     status: "new",
   };
   db.orders.push(order);
-  writeDB(db);
+  await writeDB(db);
   return NextResponse.json({ number: order.number, total: order.total });
 }

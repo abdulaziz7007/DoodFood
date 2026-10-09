@@ -1,0 +1,6 @@
+.env.local
+data
+.claude
+.next
+node_modules
+tsconfig.tsbuildinfo
